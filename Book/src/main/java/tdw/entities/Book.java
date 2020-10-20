@@ -19,10 +19,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author Samoel Dametto
- */
 @Entity
 @Table(name = "book")
 @XmlRootElement
@@ -31,6 +27,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Book.findById", query = "SELECT b FROM Book b WHERE b.id = :id"),
     @NamedQuery(name = "Book.findByName", query = "SELECT b FROM Book b WHERE b.name = :name"),
     @NamedQuery(name = "Book.findByAuthor", query = "SELECT b FROM Book b WHERE b.author = :author"),
+    @NamedQuery(name = "Book.findByCoAuthor", query = "SELECT b FROM Book b WHERE b.coAuthor = :coAuthor"),
+    @NamedQuery(name = "Book.findByIsbn", query = "SELECT b FROM Book b WHERE b.isbn = :isbn"),
     @NamedQuery(name = "Book.findByCategory", query = "SELECT b FROM Book b WHERE b.category = :category"),
     @NamedQuery(name = "Book.findByYear", query = "SELECT b FROM Book b WHERE b.year = :year"),
     @NamedQuery(name = "Book.findByPrice", query = "SELECT b FROM Book b WHERE b.price = :price")})
@@ -52,6 +50,12 @@ public class Book implements Serializable {
     @Size(min = 1, max = 254)
     @Column(name = "author")
     private String author;
+    @Size(max = 100)
+    @Column(name = "coAuthor")
+    private String coAuthor;
+    @Size(max = 100)
+    @Column(name = "isbn")
+    private String isbn;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 254)
@@ -71,12 +75,14 @@ public class Book implements Serializable {
         this.id = id;
     }
 
-    public Book(Integer id, String name, String author, String category, float price) {
+    public Book(Integer id, String name, String author, String category, float price, String coAuthor, String isbn) {
         this.id = id;
         this.name = name;
         this.author = author;
         this.category = category;
         this.price = price;
+        this.coAuthor = coAuthor;
+        this.isbn = isbn;
     }
 
     public Integer getId() {
@@ -101,6 +107,22 @@ public class Book implements Serializable {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public String getCoAuthor() {
+        return coAuthor;
+    }
+
+    public void setCoAuthor(String coAuthor) {
+        this.coAuthor = coAuthor;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public String getCategory() {

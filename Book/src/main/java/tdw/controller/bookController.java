@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import tdw.entities.Book;
-import tdw.sessionbean.BookFacadeLocal;
+import tdw.sessionBean.BookFacadeLocal;
 
 @Named(value = "bookController")
 @SessionScoped
@@ -20,6 +20,8 @@ public class bookController implements Serializable {
     private final Book book = new Book();
     private String name;
     private String author;
+    private String coAuthor;
+    private String isbn;
     private Integer year;
     private String category;
     private float price;
@@ -61,6 +63,22 @@ public class bookController implements Serializable {
     public void setYear(Integer year) {
         this.year = year;
     }
+    
+    public String getCoAuthor() {
+        return coAuthor;
+    }
+
+    public void setCoAuthor(String coAuthor) {
+        this.coAuthor = coAuthor;
+    }
+    
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
 
     public String getCategory() {
         return category;
@@ -83,6 +101,8 @@ public class bookController implements Serializable {
         this.category = "";
         this.name = "";
         this.price = 0;
+        this.coAuthor = "";
+        this.isbn = "";
         this.year = 0;
     }
 
@@ -92,6 +112,8 @@ public class bookController implements Serializable {
         this.book.setName(this.name);
         this.book.setPrice(this.price);
         this.book.setYear(this.year);
+        this.book.setAuthor(this.author);
+        this.book.setIsbn(this.isbn);
         this.booksFacade.create(this.book);
         this.emptyVariables();
         return "index.xhtml?faces-redirect=true";
