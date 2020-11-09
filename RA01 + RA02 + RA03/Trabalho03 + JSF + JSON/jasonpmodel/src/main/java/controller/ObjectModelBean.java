@@ -29,7 +29,6 @@ public class ObjectModelBean implements Serializable {
     List<DOMTreeRow> rowList;
     
     /* Form properties */
-    
     private String name = "Duke Book";
     private String author = "Duke Sr.";
     private String coAuthor = "Duke Jr.";
@@ -39,13 +38,11 @@ public class ObjectModelBean implements Serializable {
     private float price = (float) 20.5;
     protected String jsonTextArea = "";
     
-    
     static final Logger log = Logger.getLogger("ObjectModelBean");
     
     public ObjectModelBean() {}
     
     /* Getters and setters */
-    
     public String getName() {
         return name;
     }
@@ -104,8 +101,6 @@ public class ObjectModelBean implements Serializable {
         return rowList;
     }
     
-    
-    
     /* Action method for the form in index.xhtml.
      * Builds a JSON object model from form data. */
     public String buildJson() {        
@@ -118,7 +113,7 @@ public class ObjectModelBean implements Serializable {
             .add("city", year)
             .add("state", category)
             .add("postalCode", price)
-            .build();
+        .build();
         
         /* Write JSON Output */
         StringWriter stWriter = new StringWriter();
