@@ -94,6 +94,15 @@ public class ObjectModelBean implements Serializable {
     public void setJsonTextArea(String jsonTextArea) {
         this.jsonTextArea = jsonTextArea;
     }
+    public String getDocumentJson() {
+        return documentJson;
+    }
+    public String getDocumentJsonFormatted() {
+        return documentJsonFormatted;
+    }
+    public List<DOMTreeRow> getRowList() {
+        return rowList;
+    }
     
     
     
